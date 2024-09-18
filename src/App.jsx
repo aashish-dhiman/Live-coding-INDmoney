@@ -106,9 +106,6 @@ export default function App() {
                                                 : findPoint(i, j)
                                                 ? "bg-blue-600"
                                                 : ""
-                                        } ${
-                                            // if overlapping
-                                            ""
                                         } w-16 h-16 border border-black`}
                                     >
                                         {j === elephant[1] && i === elephant[0]
@@ -128,7 +125,7 @@ export default function App() {
                     className="border p-1"
                     onClick={() => {
                         setElephant(generateElephant());
-                        setCamel(generateCamel());
+                        setCamel(generateCamel(elephant));
                     }}
                 >
                     Reset
