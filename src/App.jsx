@@ -96,19 +96,19 @@ export default function App() {
                                     <div
                                         key={j}
                                         className={`${
-                                            i === elephant[0] ||
-                                            j === elephant[1]
+                                            (i === elephant[0] ||
+                                                j === elephant[1]) &&
+                                            findPoint(i, j)
+                                                ? "bg-red-600"
+                                                : i === elephant[0] ||
+                                                  j === elephant[1]
                                                 ? "bg-yellow-700"
                                                 : findPoint(i, j)
                                                 ? "bg-blue-600"
                                                 : ""
                                         } ${
                                             // if overlapping
-                                            (i === elephant[0] ||
-                                                j === elephant[1]) &&
-                                            findPoint(i, j)
-                                                ? "bg-red-600"
-                                                : ""
+                                            ""
                                         } w-16 h-16 border border-black`}
                                     >
                                         {j === elephant[1] && i === elephant[0]
