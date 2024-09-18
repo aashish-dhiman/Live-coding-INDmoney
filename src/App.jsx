@@ -18,9 +18,15 @@ function generateElephant() {
     let col = Math.floor(Math.random() * 8);
     return [row, col];
 }
-function generateCamel() {
-    let row = Math.floor(Math.random() * 8);
-    let col = Math.floor(Math.random() * 8);
+function generateCamel(elephant) {
+    let row, col;
+
+    // Keep generating new positions for camel until they don't overlap with the elephant
+    do {
+        row = Math.floor(Math.random() * 8);
+        col = Math.floor(Math.random() * 8);
+    } while (row === elephant[0] && col === elephant[1]);
+
     return [row, col];
 }
 
@@ -66,7 +72,7 @@ export default function App() {
     const [board, setBoard] = useState(generateGrid() || []);
     const [elephant, setElephant] = useState(generateElephant() || []);
     console.log("elephant: ", elephant);
-    const [camel, setCamel] = useState(generateCamel || []);
+    const [camel, setCamel] = useState(generateCamel(elephant) || []);
     console.log("camel: ", camel);
     const [diagonals, setDiagonals] = useState([]);
     // console.log("diagonals: ", diagonals);
@@ -109,7 +115,7 @@ export default function App() {
                                             ? "Ele"
                                             : j === camel[1] && i === camel[0]
                                             ? "Camel"
-                                            : `${i},${j}`}
+                                            : ""}
                                     </div>
                                 );
                             })}
